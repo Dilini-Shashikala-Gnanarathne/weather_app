@@ -81,13 +81,13 @@ function WeatherApp() {
   
       // Assuming you have an array of colors for each day of the week
       const dayColors = {
-        Monday: 'red',
-        Tuesday: 'orange',
-        Wednesday: 'yellow',
-        Thursday: 'green',
-        Friday: 'blue',
-        Saturday: 'indigo',
-        Sunday: 'violet',
+        Monday: '#FFDF00',
+        Tuesday: '#FFF017',
+        Wednesday: '#FFFF00',
+        Thursday: '#EEE600',
+        Friday: '#FFF44F',
+        Saturday: '#FFF600',
+        Sunday: '#FFD300',
       };
 
 
@@ -98,7 +98,7 @@ function WeatherApp() {
   };
 
   const defaultIcon = new Icon({
-    iconUrl: clear_icon,
+    iconUrl: wicon,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
@@ -127,7 +127,7 @@ function WeatherApp() {
                 {searchedCity}
               </div>
               <div className="weather-temp">
-                12°
+                
               </div>
             </div>
           </>
@@ -186,15 +186,30 @@ function WeatherApp() {
     <p className='weakly'>Weekly Forecast</p>
     <div className="forecast-container">
       {forecastData.map((forecast, index) => (
-        <div key={index} className="forecast-item" >
-          <div style={{ color: dayColors[getWeekDay(forecast.dt)] }}>{getWeekDay(forecast.dt)}</div>
-          <div style={{ padding: '20px' }}>{new Date(forecast.dt * 1000).toLocaleTimeString()}</div>          <div style={{  padding: '20px' }}>{forecast.main.temp}°C</div>
-          <div style={{  padding: '20px' }}>{forecast.weather[0].description}</div>
+        <div key={index} className="forecast-item">
+          <div style={{ color: dayColors[getWeekDay(forecast.dt)] }}>
+            {getWeekDay(forecast.dt)}
+          </div>
+          <div style={{ color: dayColors[getWeekDay(forecast.dt)], padding: '20px' }}>
+            {new Date(forecast.dt * 1000).toLocaleTimeString()}
+          </div>
+          <div style={{ padding: '20px' }}>{forecast.main.temp}°C</div>
+          <div style={{ padding: '20px' }}>
+            {forecast.weather[0].description}
+          </div>
+          <div style={{ padding: '20px' }}>
+            Humidity: {forecast.main.humidity}%
+          </div>
+          <div style={{ padding: '20px' }}>
+            Wind Speed: {forecast.wind.speed} m/s
+          </div>
+          
         </div>
       ))}
     </div>
   </>
 )}
+
 
       {searchedCity ? (
         <>
@@ -224,7 +239,7 @@ function WeatherApp() {
               {!isCitySearched && (
                 <Marker position={[6.9271, 79.8612]} icon={defaultIcon} style={{ cursor: 'pointer', color: 'red' }}>
                   <Popup>
-                    Default Marker: Colombo
+                    
                   </Popup>
                 </Marker>
               )}
