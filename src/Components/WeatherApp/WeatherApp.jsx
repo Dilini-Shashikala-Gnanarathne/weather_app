@@ -156,11 +156,12 @@ function WeatherApp() {
               <img src={clear_icon} alt='' />
             </div>
             <div className="weather-info">
-              Discover current weather infomation and week forecast
               <div className="weather-location">
               </div>
               <div className="weather-temp">
               </div>
+              Discover current weather infomation and week forecast
+
             </div>
           </>
         )}
