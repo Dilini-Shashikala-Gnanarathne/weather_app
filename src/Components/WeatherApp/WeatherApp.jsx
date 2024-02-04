@@ -13,6 +13,7 @@ import humidity_icon from "../Assets/humidity.png";
 import wind_icon from "../Assets/wind.png";
 import search_icon from "../Assets/search.png";
 
+
 function WeatherApp() {
   const api_key = "39565bc0ac0b581ca412907d4c6f412e";
   const [wicon, setwicon] = useState(cloud_icon);
@@ -79,7 +80,6 @@ function WeatherApp() {
     }
   };
   
-      // Assuming you have an array of colors for each day of the week
       const dayColors = {
         Monday: '#FFDF00',
         Tuesday: '#FFF017',
@@ -91,6 +91,21 @@ function WeatherApp() {
       };
 
 
+  const formatCurrentDate = () => {
+    const currentDate = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return currentDate.toLocaleDateString(undefined, options);
+  };
+
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []); 
   const getWeekDay = (timestamp) => {
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const date = new Date(timestamp * 1000);
@@ -106,6 +121,10 @@ function WeatherApp() {
   return (
     <div className="container">
       <p>Weather Forecast In Your City</p>
+      
+      <div className="current-date">
+        {formatCurrentDate()} | {currentTime.toLocaleTimeString()}
+      </div>
 
       <div className="top-bar">
         <div className="search_bar">
@@ -134,9 +153,10 @@ function WeatherApp() {
         ) : (
           <>
             <div className="weather-image">
-              <img src={''} alt='' />
+              <img src={clear_icon} alt='' />
             </div>
             <div className="weather-info">
+              Discover current weather infomation and week forecast
               <div className="weather-location">
               </div>
               <div className="weather-temp">
