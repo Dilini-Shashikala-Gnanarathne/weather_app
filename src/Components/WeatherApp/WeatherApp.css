@@ -5,7 +5,6 @@
 }
 
 body {
-  background: rgb(29,42,106);
   color: #fff;
   background: radial-gradient(circle, rgba(29,42,106,1) 0%, rgba(13,8,5,1) 100%);   font-family: 'Arial', sans-serif;
 }
@@ -126,20 +125,56 @@ body {
   overflow-x: auto;
   white-space: nowrap;
   padding: 10px;
-  margin-top: 300px;
-  padding-bottom: 200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  color: black;
 }
 
 .forecast-item {
   flex: 0 0 auto;
   margin-right: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #3c3737;
   background-color: #fff;
   border-radius: 10px;
 }
 .map-container{
-  border-radius: 25px;
-  padding-bottom: 200px;
-  width: 100px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.weakly{
+  color: aqua;
+  font-size: 25px;
+  padding-top: 100px;
+}
+.forecast-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Adjust the number of columns as needed */
+  gap: 10px; /* Adjust the gap between columns */
+}
+.forecast-item {
+  padding: 10px;
+  text-align: center;
+  background: none;
+  border: none;
+  color: transparent;}
+
+.forecast-item:hover {
+  color: rgb(255, 255, 255); 
+  background: radial-gradient(circle, rgba(29,42,106,1) 0%, rgba(13,8,5,1) 100%);   font-family: 'Arial', sans-serif;
+  font-size: 20px;
+}
+
+
+/* Optional: Style individual elements within the forecast-item */
+.day {
+  font-weight: bold;
+}
+
+.temp, .description {
+  padding: 10px;
 }
